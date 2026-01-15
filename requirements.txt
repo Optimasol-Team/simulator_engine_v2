@@ -1,0 +1,6 @@
+git+https://github.com/Optimasol-Team/Optimiser_Engine-v2.0.git
+matplotlib
+numpy
+pandas
+PyYAML
+streamlit

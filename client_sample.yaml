@@ -1,0 +1,93 @@
+# Configuration d'un Client
+client_id: 12345
+
+water_heater:
+  volume: 200.0            # En Litres
+  power: 2500.0            # En Watts
+  insulation_coeff: 0   # Optionnel (défaut 0). Perte en °C/min
+  temp_cold_water: 10.0    # Optionnel (défaut 10). En °C
+
+prices:
+  mode: "HPHC"             # Choix : "BASE" ou "HPHC"
+  hp_price: 0.25           # Prix du kWh en Heures Pleines
+  hc_price: 0.15           # Prix du kWh en Heures Creuses
+  #base_price: 0.20         # Utilisé seulement si mode = "BASE"
+  resell_price: 0.10       # Prix de revente
+  # Liste des créneaux HP (Format "HH:MM", obligatoire si mode HPHC)
+  hp_slots:
+    - start: "06:00"
+      end: "22:00"
+
+features:
+  gradation: true          # true si le chauffe-eau supporte la modulation de puissance
+  mode: "cost"             # Choix : "cost" (économique) ou "AutoCons" (autoconsommation)
+
+constraints:
+  min_temp: 40.0           # Température minimale de sécurité
+  # Périodes où la chauffe est INTERDITE
+  forbidden_slots:
+    - start: "01:00"
+      end: "04:00"
+  
+  # Profil de consommation (null = profil par défaut / bruit de fond)
+  # Pour un profil personnalisé, fournir une liste de 7 listes de 24 valeurs
+  consumption_profile: null
+  background_noise : 400 #optionnel, pour une maison à puissance constante. 
+
+planning:
+  # Liste des besoins en eau chaude
+  # day : 0 = Lundi, ... 6 = Dimanche
+  - day: 0
+    time: "18:15"          # Mettre entre guillemets pour éviter la confusion avec des minutes
+    target_temp: 50.0
+    volume: 40.0
+
+  - day: 1
+    time: "18:15"
+    target_temp: 50.0
+    volume: 80.0
+
+  - day: 2
+    time: "08:00"
+    target_temp: 50.0
+    volume: 35.0
+
+  - day: 2
+    time: "18:30"
+    target_temp: 50.0
+    volume: 70.0
+
+  - day: 3
+    time: "18:15"
+    target_temp: 50.0
+    volume: 45.0
+
+  - day: 4
+    time: "09:00"
+    target_temp: 50.0
+    volume: 60.0
+
+  - day: 4
+    time: "18:15"
+    target_temp: 50.0
+    volume: 75.0
+
+  - day: 5
+    time: "10:30"
+    target_temp: 50.0
+    volume: 50.0
+
+  - day: 5
+    time: "17:00"
+    target_temp: 50.0
+    volume: 65.0
+
+  - day: 6
+    time: "09:00"
+    target_temp: 50.0
+    volume: 40.0
+
+  - day: 6
+    time: "18:15"
+    target_temp: 50.0
+    volume: 85.0
