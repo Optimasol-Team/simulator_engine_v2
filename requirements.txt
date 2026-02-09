@@ -4,3 +4,4 @@ numpy
 pandas
 PyYAML
 streamlit
+altair<5
